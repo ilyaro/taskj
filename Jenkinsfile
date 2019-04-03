@@ -7,6 +7,9 @@ pipeline {
                     if (currentBuild?.getPreviousBuild()?.result == 'SUCCESS' ) {
                         bat 'exit 1'
                     }
+                    if (currentBuild?.getPreviousBuild()?.getPreviousBuild()?.result == 'SUCCESS' ) {
+                        bat 'exit 1'
+                    }
                 }
             }
         }
