@@ -4,8 +4,7 @@ pipeline {
         stage("PrintJob"){
             steps {
                 script {
-                    currentBuild.displayName = "The name."
-                    currentBuild.description = "The best description."
+                    bat 'echo %JOB_NAME%' 
                 }
             }
         }
