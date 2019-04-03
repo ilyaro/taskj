@@ -1,10 +1,15 @@
 pipeline {
     agent any
     stages {
+        stage("Check prevous jobs"){
+            if (currentBuild?.getPreviousBuild()?.result == 'SUCCESS' or currentBuild?.getPreviousBuild()?.getPreviousBuild().result == 'SUCCESS' ) 
+                exit 1
+            }
+        }
         stage("PrintJob"){
             steps {
                 script {
-                    bat 'for /L %%a in (1,1,3) do (echo %JOB_NAME%) & if errorlevel 0 exit 0' 
+                   bat 'echo %JOB_NAME%' 
                 }
             }
         }
