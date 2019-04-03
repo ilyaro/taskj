@@ -2,7 +2,10 @@ pipeline {
     agent any
     stages {
         stage("Check prevous jobs"){
-            if (currentBuild?.getPreviousBuild()?.result == 'SUCCESS' or currentBuild?.getPreviousBuild()?.getPreviousBuild().result == 'SUCCESS' ) 
+            if (currentBuild?.getPreviousBuild()?.result == 'SUCCESS' ) {
+                exit 1
+            }
+            if (currentBuild?.getPreviousBuild()?.getPreviousBuild().result == 'SUCCESS') {
                 exit 1
             }
         }
