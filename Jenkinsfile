@@ -5,7 +5,7 @@ pipeline {
             steps{
                 script{
                     if (currentBuild?.getPreviousBuild()?.result == 'SUCCESS' ) {
-                        exit 1
+                        bat 'exit 1'
                     }
                 }
             }
